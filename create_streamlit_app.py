@@ -38,11 +38,9 @@ fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 streamlit.dataframe(fruityvice_normalized)
 
 import streamlit
-try:
-    import snowflake.connector
-except ModuleNotFoundError:
-    streamlit.error("The 'snowflake.connector' module is not found. Please make sure it is installed.")
-    streamlit.stop()
+
+import snowflake.connector
+
 
 # Rest of your code that uses snowflake.connector
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
