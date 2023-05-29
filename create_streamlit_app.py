@@ -37,9 +37,14 @@ fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 # write your own comment - what does this do?
 streamlit.dataframe(fruityvice_normalized)
 
-import snowflake.connector
 import streamlit
+try:
+    import snowflake.connector
+except ModuleNotFoundError:
+    streamlit.error("The 'snowflake.connector' module is not found. Please make sure it is installed.")
+    streamlit.stop()
 
+# Rest of your code that uses snowflake.connector
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
