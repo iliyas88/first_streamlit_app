@@ -116,8 +116,12 @@ my_cur = my_cnx.cursor()
 # streamlit.text(my_data_row)
 
 cmd=streamlit.text_input('custom query')
+error=False
 try:
     my_cur.execute(cmd)
+except:
+    error=True
+if not error:
     streamlit.write(my_cur.fetchall())
-except Exception e:
-    streamlit.error('invalid query!!!',e.message())
+else:
+    streamlit.error('invalid query!!!')
