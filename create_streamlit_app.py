@@ -115,7 +115,7 @@ my_cur = my_cnx.cursor()
 # streamlit.text("The Fruit load list contains:")
 # streamlit.text(my_data_row)
 
-cmd=streamlit.input()
+cmd=streamlit.text_input('custom query')
 try:
     my_cur.execute(cmd)
     streamlit.write(my_cur.fetchall())
