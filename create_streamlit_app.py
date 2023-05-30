@@ -119,5 +119,5 @@ cmd=streamlit.text_input('custom query')
 try:
     my_cur.execute(cmd)
     streamlit.write(my_cur.fetchall())
-except:
-    streamlit.error('invalid query!!!')
+except Exception e:
+    streamlit.error('invalid query!!!',e.message())
